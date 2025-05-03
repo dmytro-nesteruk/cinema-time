@@ -1,0 +1,5 @@
+{
+	"$schema": "https://json.schemastore.org/lintstagedrc.schema.json",
+	"./**/*.{ts,tsx,js,jsx,json,html,css,scss}": "bash -c 'pnpm check:formatting'",
+	"./**/*.{ts,tsx}": ["bash -c 'pnpm check:code'", "bash -c 'pnpm check:types'"]
+}
