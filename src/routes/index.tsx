@@ -1,7 +1,7 @@
-import { Group, Paper, Stack, Title } from "@mantine/core";
+import { Box, Group, Paper, Stack, Title } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import dayjs from "dayjs";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { DateFilters } from "@widgets/date-filters";
 import { useDateFilters } from "@widgets/date-filters/model/use-date-filters";
@@ -19,49 +19,53 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
-	const { events } = useUserEventsStore();
+	const events = useUserEventsStore((state) => state.events);
 	const { startDate, endDate } = useDateFilters();
 
-	const filtered = useMemo(
-		() =>
-			events.filter(
-				(event) =>
-					dayjs(event.startDate).isAfter(startDate) && dayjs(event.endDate).isBefore(endDate)
-			),
-		[events, startDate, endDate]
-	);
+	const filtered = useMemo(() => {
+		if (!startDate || !endDate) return events;
+
+		return events.filter(
+			(event) => dayjs(event.startDate).isAfter(startDate) && dayjs(event.endDate).isBefore(endDate)
+		);
+	}, [events, startDate, endDate]);
 
 	return (
-		<Stack gap="xl">
-			<Group justify="space-between">
-				<DateFilters />
-				<AddUserEvent />
-			</Group>
+		<React.Fragment>
+			<Stack gap="xl">
+				<Group justify="space-between">
+					<DateFilters />
+				</Group>
 
-			<Stack component="ul" gap="md" ps="0" maw="475px" w="100%" mx="auto">
-				<Show
-					when={filtered.length > 0}
-					fallback={
-						<Paper mx="auto">
-							<Title>Nothing found...</Title>
-						</Paper>
-					}
-				>
-					<Each items={filtered}>
-						{(event) => (
-							<UserEventCard
-								{...event}
-								key={event.id}
-								actions={(id) => (
-									<Group align="center" gap="xs">
-										<DeleteUserEvent id={id} />
-									</Group>
-								)}
-							/>
-						)}
-					</Each>
-				</Show>
+				<Stack component="ul" gap="md" ps="0" maw="475px" w="100%" mx="auto">
+					<Show
+						when={filtered.length > 0}
+						fallback={
+							<Paper mx="auto">
+								<Title>Nothing found...</Title>
+							</Paper>
+						}
+					>
+						<Each items={filtered}>
+							{(event) => (
+								<UserEventCard
+									{...event}
+									key={event.id}
+									actions={(id) => (
+										<Group align="center" gap="xs">
+											<DeleteUserEvent id={id} />
+										</Group>
+									)}
+								/>
+							)}
+						</Each>
+					</Show>
+				</Stack>
 			</Stack>
-		</Stack>
+
+			<Box pos="fixed" bottom={16} right={16}>
+				<AddUserEvent />
+			</Box>
+		</React.Fragment>
 	);
 }

@@ -55,7 +55,6 @@ export const AddUserEvent = () => {
 										valueFormat="DD MMM YYYY, HH:mm"
 										placeholder="Event start date"
 										minDate={DATES.getMinAvailable().toDate()}
-										maxDate={DATES.getMaxAvailable().toDate()}
 										{...field}
 									/>
 								</Input.Wrapper>
@@ -71,7 +70,6 @@ export const AddUserEvent = () => {
 										valueFormat="DD MMM YYYY, HH:mm"
 										placeholder="Event end date"
 										minDate={DATES.getMinAvailable().toDate()}
-										maxDate={DATES.getMaxAvailable().toDate()}
 										{...field}
 									/>
 								</Input.Wrapper>
@@ -87,7 +85,9 @@ export const AddUserEvent = () => {
 				</Show>
 
 				<Group grow justify="stretch" align="center" pt="lg" gap="xs">
-					<Button variant="outline">Cancel</Button>
+					<Button variant="outline" onClick={handleClose}>
+						Cancel
+					</Button>
 					<Button type="submit" form="add-user-event" disabled={!isDirty}>
 						Add
 					</Button>

@@ -22,7 +22,7 @@ const DEFAULT_VALUES: Partial<Form> = {
 };
 
 export const useAddUserEventForm = ({ onSuccess }: UseAddUserEventFormProps) => {
-	const store = useUserEventsStore();
+	const addEvent = useUserEventsStore((state) => state.add);
 
 	const {
 		handleSubmit,
@@ -38,7 +38,7 @@ export const useAddUserEventForm = ({ onSuccess }: UseAddUserEventFormProps) => 
 
 	const onSubmit = handleSubmit((data) => {
 		const { 1: error } = safeExec(() => {
-			store.add({
+			addEvent({
 				id: crypto.randomUUID(),
 				title: data.title,
 				startDate: data.startDate.toISOString(),

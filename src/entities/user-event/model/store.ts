@@ -7,7 +7,6 @@ import { UserEvent } from "@shared/models/user-event";
 type UserEventsStore = {
 	events: UserEvent[];
 	add: (event: UserEvent) => void;
-	update: (event: UserEvent) => void;
 	delete: (id: UserEvent["id"]) => void;
 };
 
@@ -51,18 +50,6 @@ export const useUserEventsStore = create<UserEventsStore>()(
 				set({
 					events: [...get().events, event].sort((a, b) => dayjs(a.startDate).diff(b.startDate))
 				});
-			},
-
-			update: (event: UserEvent) => {
-				const prev = get().events;
-
-				const idx = prev.findIndex((e) => e.id === event.id);
-
-				const next = [...prev];
-
-				next[idx] = event;
-
-				set({ events: next });
 			},
 
 			delete: (id: UserEvent["id"]) => {

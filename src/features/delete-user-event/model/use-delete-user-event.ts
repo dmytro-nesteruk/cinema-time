@@ -1,7 +1,7 @@
 import { useUserEventsStore } from "@entities/user-event";
 
 export const useDeleteUserEvent = () => {
-	const store = useUserEventsStore();
+	const remove = useUserEventsStore((state) => state.delete);
 
-	return store.delete;
+	return remove;
 };

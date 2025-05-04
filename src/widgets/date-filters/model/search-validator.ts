@@ -14,7 +14,7 @@ export const validateDateSearch = (search: Record<string, unknown>): DateFilter 
 			return dayjs(startDate);
 		}
 
-		return dayjs().startOf("day");
+		return undefined;
 	})();
 
 	const end = (() => {
@@ -25,7 +25,7 @@ export const validateDateSearch = (search: Record<string, unknown>): DateFilter 
 			return dayjs(endDate);
 		}
 
-		return dayjs().endOf("day");
+		return undefined;
 	})();
 
 	return {

@@ -1,5 +1,6 @@
-import { Button, ButtonVariant, Group, Popover } from "@mantine/core";
+import { ActionIcon, Button, ButtonVariant, Divider, Group, Popover } from "@mantine/core";
 import { Calendar } from "@mantine/dates";
+import { ListRestartIcon } from "lucide-react";
 
 import { DATES } from "@shared/config/dates";
 
@@ -8,11 +9,24 @@ import { Range, useDateFilters } from "../model/use-date-filters";
 const getVariant = (isActive: boolean): ButtonVariant => (isActive ? "light" : "subtle");
 
 export const DateFilters = () => {
-	const { range, startDate, setToday, setTomorrow, setWeek, setMonth, setCustom } =
+	const { range, startDate, setToday, setTomorrow, setWeek, setMonth, setCustom, reset } =
 		useDateFilters();
 
 	return (
-		<Group>
+		<Group gap="sm" pos="sticky" top={0}>
+			<ActionIcon
+				aria-label="Reset filters"
+				title="Reset filters"
+				size="sm"
+				variant="outline"
+				color="red"
+				onClick={reset}
+			>
+				<ListRestartIcon size={16} strokeWidth={1.5} />
+			</ActionIcon>
+
+			<Divider orientation="vertical" />
+
 			<Button size="xs" variant={getVariant(range === Range.Today)} onClick={setToday}>
 				Today
 			</Button>
@@ -39,9 +53,8 @@ export const DateFilters = () => {
 				<Popover.Dropdown>
 					<Calendar
 						minDate={DATES.getMinAvailable().toDate()}
-						maxDate={DATES.getMaxAvailable().toDate()}
 						getDayProps={(date) => ({
-							selected: startDate.isSame(date),
+							selected: startDate?.isSame(date),
 							onClick: () => setCustom(date)
 						})}
 					/>

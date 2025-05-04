@@ -14,6 +14,7 @@ export const DeleteUserEvent: React.FC<DeleteUserEventProps> = ({ id }) => {
 		<ActionIcon
 			variant="outline"
 			color="red"
+			size="sm"
 			aria-label="Delete event"
 			title="Delete event"
 			onClick={() => deleteEvent(id)}

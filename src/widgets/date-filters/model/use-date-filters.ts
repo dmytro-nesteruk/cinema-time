@@ -14,7 +14,8 @@ export enum Range {
 	Tomorrow = "TOMORROW",
 	Week = "WEEK",
 	Month = "MONTH",
-	Custom = "CUSTOM"
+	Custom = "CUSTOM",
+	AnyTime = "ANY"
 }
 
 export const useDateFilters = () => {
@@ -24,6 +25,8 @@ export const useDateFilters = () => {
 	const endDate = useSearch({ strict: true, from: "__root__", select: (search) => search.end });
 
 	const range = useMemo(() => {
+		if (!startDate || !endDate) return Range.AnyTime;
+
 		if (startDate.isSame(todayStart) && endDate.isSame(todayEnd)) return Range.Today;
 
 		if (startDate.isSame(tomorrowStart) && endDate.isSame(tomorrowEnd)) return Range.Tomorrow;
@@ -92,6 +95,13 @@ export const useDateFilters = () => {
 		});
 	};
 
+	const reset = () => {
+		router.navigate({
+			replace: true,
+			to: router.latestLocation.pathname
+		});
+	};
+
 	return {
 		startDate,
 		endDate,
@@ -101,6 +111,7 @@ export const useDateFilters = () => {
 		setWeek,
 		setMonth,
 		setCustom,
+		reset,
 
 		range
 	};
