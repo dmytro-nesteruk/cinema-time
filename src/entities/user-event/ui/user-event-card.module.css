@@ -1,0 +1,8 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: var(--mantine-radius-sm);
+	border: rem(1px) solid var(--mantine-color-lblue-4);
+	padding: var(--mantine-spacing-sm);
+}

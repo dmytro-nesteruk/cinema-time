@@ -1,0 +1,29 @@
+.main {
+	position: fixed;
+	inset: 0;
+}
+
+.header {
+	position: sticky;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: rem(8px) rem(16px);
+	box-shadow: rem(5px) 0 rem(5px) rgba(0, 0, 0, 0.3);
+}
+
+.navigation {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: rem(8px);
+	align-items: center;
+}
+
+.content {
+	padding: rem(16px);
+}
+
+.link[data-status="active"] {
+	background: var(--mantine-color-lblue-0);
+}

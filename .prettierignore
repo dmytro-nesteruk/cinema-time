@@ -6,3 +6,5 @@ yarn.lock
 /dist/*
 /build/*
 /node_modules
+
+/src/routeTree.gen.ts
