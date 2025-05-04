@@ -1,4 +1,4 @@
-import { Divider, Group, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Grid, Group, Paper, Stack, Text } from "@mantine/core";
 import dayjs from "dayjs";
 
 export type UserEventCardProps = {
@@ -18,7 +18,7 @@ export const UserEventCard: React.FC<UserEventCardProps> = ({
 }) => {
 	return (
 		<Paper component="li" radius="md" withBorder p="sm" shadow="sm">
-			<Group justify="space-between" align="flex-start" gap="xs">
+			<Group wrap="nowrap" justify="space-between" align="flex-start" gap="xs">
 				<Stack gap="sm" style={{ flexGrow: 1 }}>
 					<Text component="h2" size="md" fw={600}>
 						{title}
@@ -26,25 +26,29 @@ export const UserEventCard: React.FC<UserEventCardProps> = ({
 
 					<Divider orientation="horizontal" />
 
-					<Stack gap="2">
-						<Group className="flex items-center gap-1">
+					<Grid gutter="0" align="center">
+						<Grid.Col span={2}>
 							<Text size="xs" fw={500} c="gray">
-								Start
+								Start:
 							</Text>
-
+						</Grid.Col>
+						<Grid.Col span={10}>
 							<Text component="time" size="xs" c="gray">
 								{dayjs(startDate).format("DD MMM YYYY, HH:mm")}
 							</Text>
-						</Group>
-						<Group align="center" gap="xs">
+						</Grid.Col>
+						<Grid.Col span={2}>
 							<Text size="xs" fw={500} c="gray">
 								End:
 							</Text>
+						</Grid.Col>
+
+						<Grid.Col span={10}>
 							<Text component="time" size="xs" c="gray">
 								{dayjs(endDate).format("DD MMM YYYY, HH:mm")}
 							</Text>
-						</Group>
-					</Stack>
+						</Grid.Col>
+					</Grid>
 				</Stack>
 
 				{actions && actions(id)}
