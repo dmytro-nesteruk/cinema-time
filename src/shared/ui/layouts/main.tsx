@@ -1,7 +1,9 @@
-import { Box, Button } from "@mantine/core";
-import { Link, Outlet } from "@tanstack/react-router";
+import { Box } from "@mantine/core";
+import { Outlet } from "@tanstack/react-router";
 
 import { useDateFilters } from "@widgets/date-filters";
+
+import { LinkButton } from "../base/link-button";
 
 import classes from "./main.module.css";
 
@@ -12,29 +14,25 @@ export const MainLayout: React.FC<React.PropsWithChildren> = () => {
 		<Box className={classes.main}>
 			<Box className={classes.header}>
 				<Box className={classes.navigation}>
-					<Button
-						component={Link}
+					<LinkButton
 						to="/"
-						// @ts-expect-error wrong type infering
 						search={{ start: startDate, end: endDate }}
 						variant="outline"
 						className={classes.link}
 						activeOptions={{ exact: false, includeSearch: false }}
 					>
 						Your events
-					</Button>
+					</LinkButton>
 
-					<Button
-						component={Link}
+					<LinkButton
 						to="/sessions"
-						// @ts-expect-error wrong type infering
 						search={{ start: startDate, end: endDate }}
 						variant="outline"
 						className={classes.link}
 						activeOptions={{ exact: false, includeSearch: false }}
 					>
 						Available Sessions
-					</Button>
+					</LinkButton>
 				</Box>
 			</Box>
 

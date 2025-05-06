@@ -1,6 +1,7 @@
 // @ts-expect-error no-error
 import "@fontsource-variable/montserrat";
 import { MantineColorsTuple, MantineProvider, createTheme } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
@@ -9,6 +10,7 @@ import { routeTree } from "./routeTree.gen";
 
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import "@mantine/notifications/styles.css";
 
 const router = createRouter({ routeTree });
 
@@ -46,6 +48,7 @@ if (!rootElement.innerHTML) {
 	root.render(
 		<StrictMode>
 			<MantineProvider theme={theme} defaultColorScheme="light">
+				<Notifications position="top-right" zIndex={100} />
 				<RouterProvider router={router} />
 			</MantineProvider>
 		</StrictMode>

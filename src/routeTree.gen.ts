@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SessionsIndexImport } from './routes/sessions/index'
+import { Route as SessionsIdImport } from './routes/sessions/$id'
 
 // Create/Update Routes
 
@@ -28,6 +29,12 @@ const SessionsIndexRoute = SessionsIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SessionsIdRoute = SessionsIdImport.update({
+  id: '/sessions/$id',
+  path: '/sessions/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -37,6 +44,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/sessions/$id': {
+      id: '/sessions/$id'
+      path: '/sessions/$id'
+      fullPath: '/sessions/$id'
+      preLoaderRoute: typeof SessionsIdImport
       parentRoute: typeof rootRoute
     }
     '/sessions/': {
@@ -53,36 +67,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/sessions/$id': typeof SessionsIdRoute
   '/sessions': typeof SessionsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/sessions/$id': typeof SessionsIdRoute
   '/sessions': typeof SessionsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/sessions/$id': typeof SessionsIdRoute
   '/sessions/': typeof SessionsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sessions'
+  fullPaths: '/' | '/sessions/$id' | '/sessions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sessions'
-  id: '__root__' | '/' | '/sessions/'
+  to: '/' | '/sessions/$id' | '/sessions'
+  id: '__root__' | '/' | '/sessions/$id' | '/sessions/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SessionsIdRoute: typeof SessionsIdRoute
   SessionsIndexRoute: typeof SessionsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SessionsIdRoute: SessionsIdRoute,
   SessionsIndexRoute: SessionsIndexRoute,
 }
 
@@ -97,11 +116,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/sessions/$id",
         "/sessions/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/sessions/$id": {
+      "filePath": "sessions/$id.tsx"
     },
     "/sessions/": {
       "filePath": "sessions/index.tsx"

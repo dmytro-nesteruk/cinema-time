@@ -32,12 +32,10 @@ function RouteComponent() {
 
 	return (
 		<React.Fragment>
-			<Stack gap="xl">
-				<Group justify="space-between">
-					<DateFilters />
-				</Group>
+			<Stack>
+				<DateFilters />
 
-				<Stack component="ul" gap="md" ps="0" maw="475px" w="100%" mx="auto">
+				<Stack component="ul" gap="md" p="sm" ps="0" maw="475px" w="100%" mx="auto">
 					<Show
 						when={filtered.length > 0}
 						fallback={
