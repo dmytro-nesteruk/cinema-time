@@ -10,7 +10,7 @@ An app to track movie sessions availability based on your list of tasks and even
 
 - Ability to manage your list of tasks and events
 - Ability to filter your list of tasks and events
-- Ability to movie sessions availability
+- Ability to check movie sessions availability
 - Ability to filter movie sessions
 
 ## Posible improvements
