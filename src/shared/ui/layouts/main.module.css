@@ -6,16 +6,22 @@
 .header {
 	position: sticky;
 	top: 0;
+
 	display: flex;
+
 	align-items: center;
 	justify-content: center;
+
 	padding: rem(8px) rem(16px);
+
 	box-shadow: rem(5px) 0 rem(5px) rgba(0, 0, 0, 0.3);
 }
 
 .navigation {
 	display: grid;
+
 	grid-template-columns: repeat(2, 1fr);
+
 	gap: rem(8px);
 	align-items: center;
 }
@@ -23,9 +29,10 @@
 .content {
 	position: absolute;
 	top: 52px;
-	left: 0;
 	right: 0;
 	bottom: 0;
+	left: 0;
+
 	overflow: auto;
 }
 

@@ -13,7 +13,13 @@ export const DateFilters = () => {
 		useDateFilters();
 
 	return (
-		<Group gap="sm" p="sm" pos="sticky" top={0} style={{ backdropFilter: `blur(5px)`, zIndex: 10 }}>
+		<Group
+			gap="sm"
+			p="sm"
+			pos="sticky"
+			top={0}
+			style={{ backdropFilter: `blur(15px)`, zIndex: 10 }}
+		>
 			<ActionIcon
 				aria-label="Reset filters"
 				title="Reset filters"
