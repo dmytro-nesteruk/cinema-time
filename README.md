@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# Movie Time
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An app to track movie sessions availability based on your list of tasks and events
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React SPA
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Ability to manage your list of tasks and events
+- Ability to filter your list of tasks and events
+- Ability to movie sessions availability
+- Ability to filter movie sessions
 
-```js
-export default tseslint.config({
-	extends: [
-		// Remove ...tseslint.configs.recommended and replace with this
-		...tseslint.configs.recommendedTypeChecked,
-		// Alternatively, use this for stricter rules
-		...tseslint.configs.strictTypeChecked,
-		// Optionally, add this for stylistic rules
-		...tseslint.configs.stylisticTypeChecked
-	],
-	languageOptions: {
-		// other options...
-		parserOptions: {
-			project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-			tsconfigRootDir: import.meta.dirname
-		}
-	}
-});
+## Posible improvements
+
+- Add a calendar view to display and manage user tasks and events
+- Add an option to add extra time to get to the movie theater
+
+## Prerequisites
+
+- node^20.17.0
+- pnpm^9.15.1
+
+## Tech stack
+
+- React
+- zustand
+- @tanstack/react-router
+- react-hook-form
+- zod
+- dayjs
+- MantineUI
+- lucide-react
+
+## Architecture
+
+This project is being developed using the [Feature-Sliced Design](https://feature-sliced.github.io/documentation/) architecture.
+Feature Sliced Design is a documented architectural methodology for frontend projects.
+
+## Installation and running
+
+Pull the repository
+
+```bash
+git clone https://github.com/dmytro-nesteruk/cinema-time.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies
 
-```js
-// eslint.config.js
-import reactDom from "eslint-plugin-react-dom";
-import reactX from "eslint-plugin-react-x";
+```bash
+pnpm install
+```
 
-export default tseslint.config({
-	plugins: {
-		// Add the react-x and react-dom plugins
-		"react-x": reactX,
-		"react-dom": reactDom
-	},
-	rules: {
-		// other rules...
-		// Enable its recommended typescript rules
-		...reactX.configs["recommended-typescript"].rules,
-		...reactDom.configs.recommended.rules
-	}
-});
+Run the application
+
+```bash
+pnpm dev
 ```
